@@ -1,0 +1,13 @@
+{
+  "name": "I want my douban back.",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "好像我用的豆瓣和你用的豆瓣不一样",
+  "content_scripts": [
+    {
+      "matches": ["http://*.douban.com/*"],
+      "js": ["douban.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
