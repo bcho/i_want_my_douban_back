@@ -11,7 +11,7 @@
 
         var revertTopNav = function() {
             var doumail = document.querySelector('#top-nav-doumail-link');
-            doumail.innerText = replaceText(doumail.innerText);
+            doumail.innerHTML = replaceText(doumail.innerHTML);
         };
 
         var revertDoumail = function() {
