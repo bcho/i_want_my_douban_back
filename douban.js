@@ -1,13 +1,34 @@
 (function() {
+    var isPath = function(path) {
+        return location.pathname === path;
+    };
+
     // 2015-05-17
     var revertDoumail = function() {
-        var doumail = document.querySelector('#top-nav-doumail-link');
-        var _h1 = document.querySelector('h1');
+        var replaceText = function(original) {
+            return original.replace(/私信/g, '豆邮');
+        };
 
-        doumail.innerText = doumail.innerText.replace('私信', '豆邮');
+        var revertTopNav = function() {
+            var doumail = document.querySelector('#top-nav-doumail-link');
+            doumail.innerText = replaceText(doumail.innerText);
+        };
 
-        if (_h1.innerText == '私信 原“豆邮”已更名为“私信”, 不影响功能使用') {
-            _h1.innerText = _h1.innerText.replace('私信 原“豆邮”已更名为“私信”, 不影响功能使用', '豆邮');
+        var revertDoumail = function() {
+            var html = document.querySelector('html');
+            html.innerHTML = replaceText(html.innerHTML);
+
+            // Close tooltip.
+            var tooltip = document.querySelector('#content .pop');
+            tooltip.classList.add('hide');
+        };
+
+        // Works on every page:
+        revertTopNav();
+
+        // Page related actions:
+        if (isPath('/doumail/')) {
+            revertDoumail();
         }
     };
 
